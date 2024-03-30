@@ -1,0 +1,52 @@
+﻿<Window x:Class="Book_App_Vasile_Andrei_Dragos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Book_App_Vasile_Andrei_Dragos"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="_Edituri">
+                <MenuItem Header="Lista Edituri"></MenuItem>
+                <MenuItem Header="Adauga Editura" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Autori">
+                <MenuItem Header="Lista Autori" Click="ListAuthorsSubMenuClick" ></MenuItem>
+                <MenuItem Header="Adauga Autor" Click="AddAuthorSubMenuClick"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Tipuri de carti">
+                <MenuItem Header="Lista Tipuri de carti" ></MenuItem>
+                <MenuItem Header="Adauga Tipuri de carti" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Carti">
+                <MenuItem Header="Lista Carti" ></MenuItem>
+                <MenuItem Header="Adauga Carti" ></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Imprumuturi">
+                <MenuItem Header="Lista Imprumuturi" ></MenuItem>
+                <MenuItem Header="Adauga Imprumuturi" ></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Frame Name="FrameWithinGrid" Grid.Row="1">
+        </Frame>
+
+    </Grid>
+</Window>
