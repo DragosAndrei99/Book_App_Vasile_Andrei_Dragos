@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Book_App_Vasile_Andrei_Dragos.ViewModels;
+using System;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Book_App_Vasile_Andrei_Dragos.Views
 {
@@ -20,9 +9,13 @@ namespace Book_App_Vasile_Andrei_Dragos.Views
     /// </summary>
     public partial class AddAuthor : Page
     {
-        public AddAuthor()
+        public AddAuthor(string authorId)
         {
             InitializeComponent();
+            this.DataContext = new UpdateAuthorViewModel(authorId);
+
         }
+
+
     }
 }

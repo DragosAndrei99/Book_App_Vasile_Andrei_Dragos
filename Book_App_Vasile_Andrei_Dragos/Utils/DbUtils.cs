@@ -42,19 +42,27 @@ namespace Book_App_Vasile_Andrei_Dragos.Utils
             return results;
         }
 
-        public static void ExecuteCommand(string commandText)
+        public static Author ExecuteCommand(string commandText, int id)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["SQLConnStr"].ConnectionString;
-
+            Author author = null;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(commandText, connection);
                 command.CommandType = CommandType.StoredProcedure;
-
+                command.Parameters.Add("@AuthorId", SqlDbType.NVarChar);
+                command.Parameters["@AuthorId"].Value = id;
                 try
                 {
                     connection.Open();
-
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Author authorFound = new Author(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.IsDBNull(3) ? new DateTime() : reader.GetDateTime(3), reader.GetBoolean(4));
+                            author = authorFound;
+                        }
+                    }
                     Int32 rowsAffected = command.ExecuteNonQuery();
                     Console.WriteLine("RowsAffected: {0}", rowsAffected);
                 }
@@ -63,6 +71,7 @@ namespace Book_App_Vasile_Andrei_Dragos.Utils
                     Console.WriteLine(ex.Message);
                 }
             }
+            return author;
         }
 
         public static void ExecuteQuery(string query)
@@ -70,7 +79,7 @@ namespace Book_App_Vasile_Andrei_Dragos.Utils
 
         }
 
-        public static void AddAuthor(string firstName)
+        public static void AddAuthor(string firstName, string lastName, DateTime birthDate)
         {
 
             string connectionString = ConfigurationManager.ConnectionStrings["SQLConnStr"].ConnectionString;
@@ -85,7 +94,12 @@ namespace Book_App_Vasile_Andrei_Dragos.Utils
                 command.Parameters["@FirstName"].Value = firstName;
 
                 command.Parameters.Add("@LastName", SqlDbType.NVarChar);
-                command.Parameters["@LastName"].Value = "Test";
+                command.Parameters["@LastName"].Value = lastName;
+                
+
+                // change this to make it work
+                command.Parameters.Add("@BirthDate", SqlDbType.DateTime);
+                command.Parameters["@BirthDate"].Value = birthDate;
 
                 try
                 {

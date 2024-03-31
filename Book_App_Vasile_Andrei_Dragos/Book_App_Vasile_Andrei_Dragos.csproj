@@ -61,6 +61,7 @@
     <Compile Include="Utils\ObservableObject.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="ViewModels\AuthorViewModel.cs" />
+    <Compile Include="ViewModels\UpdateAuthorViewModel.cs" />
     <Compile Include="Views\AddAuthor.xaml.cs">
       <DependentUpon>AddAuthor.xaml</DependentUpon>
     </Compile>

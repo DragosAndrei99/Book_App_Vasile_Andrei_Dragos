@@ -1,18 +1,7 @@
-﻿using Book_App_Vasile_Andrei_Dragos.Utils;
+﻿using Book_App_Vasile_Andrei_Dragos.Views;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Book_App_Vasile_Andrei_Dragos
 {
@@ -26,9 +15,9 @@ namespace Book_App_Vasile_Andrei_Dragos
             InitializeComponent();
         }
 
-        private void AddAuthorSubMenuClick(object sender, RoutedEventArgs e)
+        public void AddAuthorSubMenuClick(object sender, RoutedEventArgs e)
         {
-            FrameWithinGrid.Navigate(new Uri("Views/AddAuthor.xaml", UriKind.RelativeOrAbsolute));
+            FrameWithinGrid.Navigate(new AddAuthor(null));
         }
 
         private void ListAuthorsSubMenuClick(object sender, RoutedEventArgs e)
