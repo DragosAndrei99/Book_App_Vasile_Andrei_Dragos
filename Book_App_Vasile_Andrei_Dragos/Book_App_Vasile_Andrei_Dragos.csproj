@@ -56,18 +56,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\Author\DeleteAuthorDTO.cs" />
+    <Compile Include="Models\Author\UpdateAuthorDTO.cs" />
+    <Compile Include="Models\Author\AddAuthorDTO.cs" />
+    <Compile Include="Models\Author\GetAuthorDTO.cs" />
+    <Compile Include="Models\BookType\GetBookTypeDTO.cs" />
+    <Compile Include="Models\Book\AddBookDTO.cs" />
+    <Compile Include="Models\Book\DeleteBookDTO.cs" />
+    <Compile Include="Models\Book\GetBookDTO.cs" />
+    <Compile Include="Models\Book\UpdateBookDTO.cs" />
+    <Compile Include="Models\Publisher\GetPublisherDTO.cs" />
     <Compile Include="Utils\BindingProxy.cs" />
     <Compile Include="Utils\ObservableObject.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
-    <Compile Include="ViewModels\AuthorViewModel.cs" />
-    <Compile Include="ViewModels\UpdateAuthorViewModel.cs" />
-    <Compile Include="Views\AddAuthor.xaml.cs">
-      <DependentUpon>AddAuthor.xaml</DependentUpon>
+    <Compile Include="Utils\RelayCommandWithoutParams.cs" />
+    <Compile Include="Utils\Database\SQLTypesMapper.cs" />
+    <Compile Include="ViewModels\Author\ListAuthorsViewModel.cs" />
+    <Compile Include="ViewModels\Book\BookViewModel.cs" />
+    <Compile Include="ViewModels\Book\ListBooksViewModel.cs" />
+    <Compile Include="ViewModels\Author\AuthorViewModel.cs" />
+    <Compile Include="Views\Author\Author.xaml.cs">
+      <DependentUpon>Author.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utils\DbUtils.cs" />
-    <Compile Include="Views\ListAuthors.xaml.cs">
+    <Compile Include="Utils\Database\DbUtils.cs" />
+    <Compile Include="Views\Book\Book.xaml.cs">
+      <DependentUpon>Book.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Author\ListAuthors.xaml.cs">
       <DependentUpon>ListAuthors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Book\ListBooks.xaml.cs">
+      <DependentUpon>ListBooks.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -81,11 +100,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AddAuthor.xaml">
+    <Page Include="Views\Author\Author.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ListAuthors.xaml">
+    <Page Include="Views\Book\Book.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Author\ListAuthors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Book\ListBooks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

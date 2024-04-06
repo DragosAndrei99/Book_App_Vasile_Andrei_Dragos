@@ -1,26 +1,22 @@
-﻿using Book_App_Vasile_Andrei_Dragos.ViewModels;
-using System;
+﻿using Book_App_Vasile_Andrei_Dragos.ViewModels.Author;
 using System.Windows;
 using System.Windows.Controls;
 
 
-namespace Book_App_Vasile_Andrei_Dragos.Views
+namespace Book_App_Vasile_Andrei_Dragos.Views.Author
 {
-    /// <summary>
-    /// Interaction logic for ListAuthors.xaml
-    /// </summary>
     public partial class ListAuthors : Page
     {
         public ListAuthors()
         {
             InitializeComponent();
-            this.DataContext = new AuthorViewModel();
+            this.DataContext = new ListAuthorsViewModel();
         }
 
         public void NavigateToUpdateAuthor(object sender, RoutedEventArgs e)
         {
             string selectedAuthorId = ((Button)sender).Tag.ToString();
-            this.NavigationService.Navigate(new AddAuthor(selectedAuthorId));
+            this.NavigationService.Navigate(new Author(selectedAuthorId));
         }
     }
 }

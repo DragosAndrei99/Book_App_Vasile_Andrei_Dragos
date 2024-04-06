@@ -1,0 +1,133 @@
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Collections.Generic;
+using System.Reflection;
+
+namespace Book_App_Vasile_Andrei_Dragos.Utils.Database
+{
+    public class DbUtils
+    {
+        public const string QueryAllActiveAuthorsProcedureText = "spAuthorSelectAllActive";
+        public const string QueryAllActiveBooksProcedureText = "spBookSelectAllActive";
+        public const string QueryAllActivePublishersProcedureText = "spPublisherSelectAllActive";
+        public const string QueryAllActiveBookTypesProcedureText = "spBookTypeSelectAllActive";
+
+
+        public const string QueryAuthorByIdProcedureText = "spAuthorsSelectAuthor";
+        public const string QueryBookByIdProcedureText = "spBookSelect";
+
+        public const string AddAuthorProcedureText = "spAuthorInsert";
+
+        public const string UpdateAuthorProcedureText = "spAuthorUpdate";
+
+        public const string DeleteAuthorProcedureText = "spAuthorDelete";
+
+        public static SQLTypesMapper mapper = new SQLTypesMapper();
+
+        public static Dictionary<string, string> ExecuteQueryCommandById(string commandText, int id, string idFieldName)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["SQLConnStr"].ConnectionString;
+            Dictionary<string, string> fields = new Dictionary<string, string>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(commandText, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add($"@{idFieldName}", SqlDbType.NVarChar);
+                command.Parameters[$"@{idFieldName}"].Value = id;
+                try
+                {
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            for(int i = 0; i <  reader.FieldCount; i++)
+                            {
+                                fields[reader.GetName(i)] = reader.GetValue(i).ToString();
+                            }
+                        }
+                        
+                    }
+                    Int32 rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine("RowsAffected: {0}", rowsAffected);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                return fields;
+            }
+        }
+
+        public static List<Dictionary<string, string>> ExecuteQueryAllCommand(string commandText)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["SQLConnStr"].ConnectionString;
+            List<Dictionary<string, string>> listOfFields =  new List<Dictionary<string, string>>();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(commandText, connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                try
+                {
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Dictionary<string, string> fields = new Dictionary<string, string>(); 
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                fields[reader.GetName(i)] = reader.GetValue(i).ToString();
+                            }
+                            listOfFields.Add(fields);
+                        }
+                    }
+                    Int32 rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine("RowsAffected: {0}", rowsAffected);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return listOfFields;
+        }
+
+        public static void ExecuteCommand(string commandText, object entryToUpdate)
+        {
+
+            string connectionString = ConfigurationManager.ConnectionStrings["SQLConnStr"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(commandText, connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                foreach (PropertyInfo prop in entryToUpdate.GetType().GetProperties())
+                {
+                    string fieldToUpdate = $"@{prop.Name}";
+                    Type fieldType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+                    command.Parameters.Add(fieldToUpdate, DbUtils.mapper.MapToSqlType(fieldType));
+                    object field = prop.GetValue(entryToUpdate, null);
+                    command.Parameters[fieldToUpdate].Value = field?.ToString();
+                }
+
+                try
+                {
+                    connection.Open();
+
+                    Int32 rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine("RowsAffected: {0}", rowsAffected);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+    }
+}

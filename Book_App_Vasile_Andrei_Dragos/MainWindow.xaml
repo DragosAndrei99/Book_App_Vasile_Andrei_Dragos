@@ -37,8 +37,8 @@
                 <MenuItem Header="Adauga Tipuri de carti" ></MenuItem>
             </MenuItem>
             <MenuItem Header="_Carti">
-                <MenuItem Header="Lista Carti" ></MenuItem>
-                <MenuItem Header="Adauga Carti" ></MenuItem>
+                <MenuItem Header="Lista Carti" Click="ListBooksSubMenuClick"></MenuItem>
+                <MenuItem Header="Adauga Carti" Click="AddBookSubMenuClick"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Imprumuturi">
                 <MenuItem Header="Lista Imprumuturi" ></MenuItem>
