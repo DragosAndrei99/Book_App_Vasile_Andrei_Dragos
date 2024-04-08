@@ -41,8 +41,8 @@
                 <MenuItem Header="Adauga Carti" Click="AddBookSubMenuClick"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Imprumuturi">
-                <MenuItem Header="Lista Imprumuturi" ></MenuItem>
-                <MenuItem Header="Adauga Imprumuturi" ></MenuItem>
+                <MenuItem Header="Lista Imprumuturi" Click="ListUserBookSubMenuClick" ></MenuItem>
+                <MenuItem Header="Adauga Imprumuturi" Click="AddUserBookSubMenuClick" ></MenuItem>
             </MenuItem>
         </Menu>
         <Frame Name="FrameWithinGrid" Grid.Row="1">

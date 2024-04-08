@@ -1,5 +1,6 @@
 ﻿using Book_App_Vasile_Andrei_Dragos.Views.Author;
 using Book_App_Vasile_Andrei_Dragos.Views.Book;
+using Book_App_Vasile_Andrei_Dragos.Views.UserBook;
 using System;
 using System.Windows;
 
@@ -31,6 +32,17 @@ namespace Book_App_Vasile_Andrei_Dragos
         private void ListBooksSubMenuClick(object sender, RoutedEventArgs e)
         {
             FrameWithinGrid.Navigate(new Uri("Views/Book/ListBooks.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void ListUserBookSubMenuClick(object sender, RoutedEventArgs e)
+        {
+            FrameWithinGrid.Navigate(new Uri("Views/UserBook/ListUserBooks.xaml", UriKind.RelativeOrAbsolute));
+
+        }
+
+        private void AddUserBookSubMenuClick(object sender, RoutedEventArgs e)
+        {
+            FrameWithinGrid.Navigate(new UserBook(null));
         }
     }
 }

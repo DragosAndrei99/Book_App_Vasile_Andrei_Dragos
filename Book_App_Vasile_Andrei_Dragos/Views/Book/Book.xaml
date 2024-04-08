@@ -49,7 +49,7 @@
         <TextBox x:Name="stockTextBox" Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding Stock, Mode=TwoWay}"/>
 
         <TextBlock Text="Autor/i:" Grid.Row="6" Grid.Column="0" Margin="5"/>
-        <ComboBox Grid.Row ="8" Grid.Column="0"  IsEditable="True" IsTextSearchEnabled="True" StaysOpenOnEdit="True" Margin="5" ItemsSource="{Binding Path=AuthorList, Mode=TwoWay}">
+        <ComboBox Grid.Row ="8" Grid.Column="0"  IsEditable="True" IsTextSearchEnabled="True" StaysOpenOnEdit="True" Margin="5" ItemsSource="{Binding Path=AuthorList, Mode=TwoWay}" SelectedItem="">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <CheckBox Content="{Binding Fullname}" IsChecked="{Binding IsChecked}" Command="{Binding RelativeSource={RelativeSource AncestorType=ComboBox}, Path=DataContext.CheckUncheckAuthorCommand}" CommandParameter="{Binding AuthorId}"> 

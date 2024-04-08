@@ -61,6 +61,7 @@
     <Compile Include="DataAccess\BookDAO.cs" />
     <Compile Include="DataAccess\BookTypeDAO.cs" />
     <Compile Include="DataAccess\PublisherDAO.cs" />
+    <Compile Include="DataAccess\UserBookDAO.cs" />
     <Compile Include="Models\AuthorBook\AuthorBookCreateDTO.cs" />
     <Compile Include="Models\AuthorBook\AuthorBookDTO.cs" />
     <Compile Include="Models\AuthorBook\AuthorBookUpdateDTO.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="Models\Book\BookDeleteDTO.cs" />
     <Compile Include="Models\Book\BookDTO.cs" />
     <Compile Include="Models\Publisher\PublisherDTO.cs" />
+    <Compile Include="Models\UserBook\UserBookDTO.cs" />
+    <Compile Include="Models\User\UserDTO.cs" />
     <Compile Include="Utils\ObservableObject.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\RelayCommandWithoutParams.cs" />
@@ -81,6 +84,8 @@
     <Compile Include="ViewModels\Book\BookViewModel.cs" />
     <Compile Include="ViewModels\Book\ListBooksViewModel.cs" />
     <Compile Include="ViewModels\Author\AuthorViewModel.cs" />
+    <Compile Include="ViewModels\UserBook\ListUserBookViewModel.cs" />
+    <Compile Include="ViewModels\UserBook\UserBookViewModel.cs" />
     <Compile Include="Views\Author\Author.xaml.cs">
       <DependentUpon>Author.xaml</DependentUpon>
     </Compile>
@@ -93,6 +98,12 @@
     </Compile>
     <Compile Include="Views\Book\ListBooks.xaml.cs">
       <DependentUpon>ListBooks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserBook\ListUserBooks.xaml.cs">
+      <DependentUpon>ListUserBooks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserBook\UserBook.xaml.cs">
+      <DependentUpon>UserBook.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -119,6 +130,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Book\ListBooks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserBook\ListUserBooks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserBook\UserBook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
