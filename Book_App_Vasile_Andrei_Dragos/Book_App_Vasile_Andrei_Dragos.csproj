@@ -145,19 +145,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="StoredProcedures\dbo.spAuthorDelete.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spAuthorInsert.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spAuthorSelectAllActive.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spAuthorsSelectAuthor.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spAuthorUpdate.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spBookDelete.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spBookInsert.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spBookSelect.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spBookSelectAllActive.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spBookTypeSelectAllActive.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spBookUpdate.StoredProcedure.sql" />
-    <Content Include="StoredProcedures\dbo.spPublisherSelectAllActive.StoredProcedure.sql" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
