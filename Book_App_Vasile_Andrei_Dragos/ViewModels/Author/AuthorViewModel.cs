@@ -10,7 +10,7 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Author
     public class AuthorViewModel: ObservableObject
     {
         private AuthorDAO _authorDAO;
-        private string _authorId;
+        private int _authorId;
         private string _authorFirstName;
         private string _authorLastName;
         private Nullable<DateTime> _authorBirthDate;
@@ -21,9 +21,9 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Author
         public AuthorViewModel(string authorId) 
         {
             _authorDAO = new AuthorDAO();
-            _authorId = authorId;
-            if(_authorId != null)
+            if(authorId != null)
             {
+                _authorId = Int32.Parse(authorId);
                 this.GetAuthorDetails();
 
             }
@@ -81,13 +81,13 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Author
 
         private void UpdateAuthor()
         {
-            AuthorDTO authorToAdd = new AuthorDTO(Int32.Parse(_authorId), _authorFirstName, _authorLastName, _authorBirthDate);
+            AuthorDTO authorToAdd = new AuthorDTO(_authorId, _authorFirstName, _authorLastName, _authorBirthDate);
             _authorDAO.UpdateAuthor(authorToAdd);
         }
         private void UpdateAuthorDetails()
         {
 
-            if(_authorId != null)
+            if(_authorId > 0)
             {
                 this.UpdateAuthor();
             } else

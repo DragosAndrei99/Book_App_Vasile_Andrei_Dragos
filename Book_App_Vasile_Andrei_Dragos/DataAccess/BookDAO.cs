@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 
 namespace Book_App_Vasile_Andrei_Dragos.DataAccess
@@ -33,23 +34,23 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
 
             return bookList;
         }
-        public BookDTO GetBookById(string bookId) 
+        public BookDTO GetBookById(int bookId) 
         {
-            Dictionary<string, string> bookEntry = DatabaseAccess.ExecuteQueryCommandById(QueryBookByIdProcedureText, Int32.Parse(bookId), "BookId");
+            Dictionary<string, string> bookEntry = DatabaseAccess.ExecuteCommandById(QueryBookByIdProcedureText, bookId, "BookId").FirstOrDefault();
             string bookTypeName = bookEntry["BookTypeName"];
             string publisherName = bookEntry["PublisherName"];
             int publishYear = Int32.Parse(bookEntry["PublishYear"]);
             string title = bookEntry["Title"];
             int stock = Int32.Parse(bookEntry["Stock"]);
 
-            BookDTO book = new BookDTO(Int32.Parse(bookId), bookTypeName, publisherName, publishYear, title, stock);
+            BookDTO book = new BookDTO(bookId, bookTypeName, publisherName, publishYear, title, stock);
 
             return book;
         }
 
-        public void CreateBook(BookCreateDTO bookToAdd)
+        public int CreateBook(BookCreateDTO bookToAdd)
         {
-            DatabaseAccess.ExecuteCommand(AddBookProcedureText, bookToAdd);
+            return DatabaseAccess.ExecuteCommand(AddBookProcedureText, bookToAdd);
 
         }
 
@@ -59,9 +60,9 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
 
         }
 
-        public void DeleteBook(string bookId) 
+        public void DeleteBook(int bookId) 
         {
-            BookDeleteDTO bookToDelete = new BookDeleteDTO(Int32.Parse(bookId), false);
+            BookDeleteDTO bookToDelete = new BookDeleteDTO(bookId, false);
             DatabaseAccess.ExecuteCommand(DeleteBookProcedureText, bookToDelete);
         }
     }

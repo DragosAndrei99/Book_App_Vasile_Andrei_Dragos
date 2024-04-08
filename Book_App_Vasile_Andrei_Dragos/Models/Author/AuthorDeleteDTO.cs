@@ -5,8 +5,8 @@ namespace Book_App_Vasile_Andrei_Dragos.Models.Author
     {
         public AuthorDeleteDTO(int authorId, bool active)
         {
-            AuthorId = authorId;
-            Active = active;
+            this.AuthorId = authorId;
+            this.Active = active;
         }
 
         public int AuthorId { get; }

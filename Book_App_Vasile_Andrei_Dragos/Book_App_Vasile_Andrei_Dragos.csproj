@@ -56,10 +56,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataAccess\AuthorBookDAO.cs" />
     <Compile Include="DataAccess\AuthorDAO.cs" />
     <Compile Include="DataAccess\BookDAO.cs" />
     <Compile Include="DataAccess\BookTypeDAO.cs" />
     <Compile Include="DataAccess\PublisherDAO.cs" />
+    <Compile Include="Models\AuthorBook\AuthorBookCreateDTO.cs" />
+    <Compile Include="Models\AuthorBook\AuthorBookDTO.cs" />
+    <Compile Include="Models\AuthorBook\AuthorBookUpdateDTO.cs" />
+    <Compile Include="Models\Author\AuthorComboBox.cs" />
     <Compile Include="Models\Author\AuthorDeleteDTO.cs" />
     <Compile Include="Models\Author\AuthorCreateDTO.cs" />
     <Compile Include="Models\Author\AuthorDTO.cs" />
@@ -68,7 +73,6 @@
     <Compile Include="Models\Book\BookDeleteDTO.cs" />
     <Compile Include="Models\Book\BookDTO.cs" />
     <Compile Include="Models\Publisher\PublisherDTO.cs" />
-    <Compile Include="Utils\BindingProxy.cs" />
     <Compile Include="Utils\ObservableObject.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\RelayCommandWithoutParams.cs" />

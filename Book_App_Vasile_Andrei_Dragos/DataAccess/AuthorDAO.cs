@@ -3,6 +3,7 @@ using Book_App_Vasile_Andrei_Dragos.Models.Author;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
+using System.Linq;
 
 namespace Book_App_Vasile_Andrei_Dragos.DataAccess
 {
@@ -38,9 +39,9 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
 
             return authorList;
         }
-        public AuthorDTO GetAuthorById(string authorId)
+        public AuthorDTO GetAuthorById(int authorId)
         {
-            Dictionary<string, string> authorEntry = DatabaseAccess.ExecuteQueryCommandById(QueryAuthorByIdProcedureText, Int32.Parse(authorId), "AuthorId");
+            Dictionary<string, string> authorEntry = DatabaseAccess.ExecuteCommandById(QueryAuthorByIdProcedureText, authorId, "AuthorId").FirstOrDefault();
 
             string firstName = authorEntry["FirstName"];
             string lastName = authorEntry["LastName"];
@@ -48,11 +49,11 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
             if (authorEntry.TryGetValue("BirthDate", out string birthDateEntry))
             {
                 DateTime.TryParse(birthDateEntry, out DateTime birthDate);
-                author = new AuthorDTO(Int32.Parse(authorId), firstName, lastName, birthDate);
+                author = new AuthorDTO(authorId, firstName, lastName, birthDate);
             }
             else
             {
-                author = new AuthorDTO(Int32.Parse(authorId), firstName, lastName, null);
+                author = new AuthorDTO(authorId, firstName, lastName, null);
             }
 
             return author;
@@ -70,9 +71,9 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
 
         }
 
-        public void DeleteAuthor(string authorId)
+        public void DeleteAuthor(int authorId)
         {
-            AuthorDeleteDTO authorToDelete = new AuthorDeleteDTO(Int32.Parse(authorId), false);
+            AuthorDeleteDTO authorToDelete = new AuthorDeleteDTO(authorId, false);
             DatabaseAccess.ExecuteCommand(DeleteAuthorProcedureText, authorToDelete);
         }
     }

@@ -6,9 +6,9 @@ namespace Book_App_Vasile_Andrei_Dragos.Models.Author
     {
         public AuthorCreateDTO(string firstName, string lastName, Nullable<DateTime> birthDate)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            BirthDate = birthDate;
+            this.FirstName = firstName;
+            this.LastName = lastName;
+            this.BirthDate = birthDate;
         }
 
         public string FirstName { get; set; }

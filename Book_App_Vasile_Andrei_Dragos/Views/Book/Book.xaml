@@ -19,6 +19,11 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -43,9 +48,22 @@
         <TextBlock Text="Stoc:" Grid.Row="4" Grid.Column="0" Margin="5"/>
         <TextBox x:Name="stockTextBox" Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding Stock, Mode=TwoWay}"/>
 
-        <Button Content="Adauga" Command="{Binding ModifyBookCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
-        <Button Content="Sterge" Command="{Binding DeleteBookCommand}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
-       
-        
+        <TextBlock Text="Autor/i:" Grid.Row="6" Grid.Column="0" Margin="5"/>
+        <ComboBox Grid.Row ="8" Grid.Column="0"  IsEditable="True" IsTextSearchEnabled="True" StaysOpenOnEdit="True" Margin="5" ItemsSource="{Binding Path=AuthorList, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Fullname}" IsChecked="{Binding IsChecked}" Command="{Binding RelativeSource={RelativeSource AncestorType=ComboBox}, Path=DataContext.CheckUncheckAuthorCommand}" CommandParameter="{Binding AuthorId}"> 
+                    </CheckBox>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ListBox Grid.Row ="9" Grid.Column="0" Margin="5" ItemsSource="{Binding Path=CheckedAuthorsList, Mode=TwoWay}"/>
+
+
+        <Button Content="Adauga" Command="{Binding ModifyBookCommand}" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
+        <Button Content="Sterge" Command="{Binding DeleteBookCommand}" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
+
+
     </Grid>
 </Page>
