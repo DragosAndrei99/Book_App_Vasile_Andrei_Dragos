@@ -6,13 +6,16 @@ using Book_App_Vasile_Andrei_Dragos.Models.Book;
 using Book_App_Vasile_Andrei_Dragos.Models.Publisher;
 using Book_App_Vasile_Andrei_Dragos.Models.BookType;
 using Book_App_Vasile_Andrei_Dragos.Utils;
-using Book_App_Vasile_Andrei_Dragos.Utils.Database;
-using Book_App_Vasile_Andrei_Dragos.Models.Author;
+using Book_App_Vasile_Andrei_Dragos.DataAccess;
 
 namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Book
 {
     public class BookViewModel: ObservableObject
     {
+        private BookDAO _bookDAO;
+        private BookTypeDAO _bookTypeDAO;
+        private PublisherDAO _publisherDAO;
+        private BookDTO _bindedBook;
         private string _bookId;
         private string _bookTypeName;
         private string _publisherName;
@@ -23,12 +26,15 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Book
         private ObservableCollection<string> _bookTypeList = new ObservableCollection<string>();
 
 
-        public RelayCommandWithoutParams UpdateBookDetailsCommand { get; private set; }
+        public RelayCommandWithoutParams ModifyBookCommand { get; private set; }
 
         public RelayCommandWithoutParams DeleteBookCommand { get; private set; }
 
         public BookViewModel(string bookId)
         {
+            _bookDAO = new BookDAO();
+            _bookTypeDAO = new BookTypeDAO();
+            _publisherDAO = new PublisherDAO();
             _bookId = bookId;
             if (_bookId != null)
             {
@@ -37,11 +43,20 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Book
             }
             this.LoadBookTypes();
             this.LoadPublishers();
-            /*            UpdateBookDetailsCommand = new RelayCommandWithoutParams(UpdateBookDetails);
-                        DeleteBookCommand = new RelayCommandWithoutParams(DeleteBook);*/
+            ModifyBookCommand = new RelayCommandWithoutParams(ModifyBook);
+            DeleteBookCommand = new RelayCommandWithoutParams(DeleteBook);
         }
 
-
+        public BookDTO Book
+        {
+            get
+            { return _bindedBook; }
+            set
+            {
+                _bindedBook = value;
+                OnPropertyChanged("Book");
+            }
+        }
         public string BookTitle
         {
             get
@@ -121,8 +136,7 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Book
 
         private void GetBookDetails()
         {
-            Dictionary<string, string> bookEntry = DbUtils.ExecuteQueryCommandById(DbUtils.QueryBookByIdProcedureText, Int32.Parse(_bookId), "BookId");
-            GetBookDTO book = new GetBookDTO(bookEntry);
+            BookDTO book = _bookDAO.GetBookById(_bookId);
             BookTitle = book.Title;
             BookTypeName = book.BookTypeName;
             PublisherName = book.PublisherName;
@@ -132,48 +146,52 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Book
 
         private void LoadPublishers()
         {
-            List<Dictionary<string, string>> listOfPublishers = DbUtils.ExecuteQueryAllCommand(DbUtils.QueryAllActivePublishersProcedureText);
-            foreach (Dictionary<string, string> entry in listOfPublishers)
+            ObservableCollection<PublisherDTO> listOfPublishers = _publisherDAO.GetAllPublishers();
+            foreach (PublisherDTO entry in listOfPublishers)
             {
-                GetPublisherDTO getPublisherDTO = new GetPublisherDTO(entry);
-                this.PublisherNameList.Add(getPublisherDTO.Name);
+                this.PublisherNameList.Add(entry.Name);
             }
+
         }
 
         private void LoadBookTypes()
         {
-            List<Dictionary<string, string>> listOfBookTypes = DbUtils.ExecuteQueryAllCommand(DbUtils.QueryAllActiveBookTypesProcedureText);
-            foreach (Dictionary<string, string> entry in listOfBookTypes)
+            ObservableCollection<BookTypeDTO> listOfBookTypes = _bookTypeDAO.GetAllBookTypes();
+            foreach (BookTypeDTO entry in listOfBookTypes)
             {
-                GetBookTypeDTO bookTypeDTO = new GetBookTypeDTO(entry);
-                this.BookTypeNameList.Add(bookTypeDTO.Name);
+                this.BookTypeNameList.Add(entry.Name);
             }
         }
 
-        //TODO: Implement book UPDATE and DELETE
+        private void CreateBook()
+        {
+            BookCreateDTO bookToAdd = new BookCreateDTO( _bookTypeName, _publisherName, _publishYear, _title, _stock);
+            _bookDAO.CreateBook(bookToAdd);
+        }
 
-        /* private void UpdateBookDetails()
-         {
+        private void UpdateBook()
+        {
+            BookDTO bookToUpdate = new BookDTO(Int32.Parse(_bookId), _bookTypeName, _publisherName, _publishYear,_title, _stock);
+            _bookDAO.UpdateBook(bookToUpdate);
+        }
 
-             if (_bookId != null)
-             {
-                 UpdateBookDTO bookToUpdate = new UpdateBookDTO(Int32.Parse(_bookId), _title, _publishYear, _stock);
-                 DbUtils.ExecuteCommand(DbUtils.UpdateBookProcedureText, bookToUpdate);
-             }
-             else
-             {
-                 AddBookDTO bookToAdd = new AddBookDTO(_title, _publishYear, _stock);
-                 DbUtils.ExecuteCommand(DbUtils.AddBookProcedureText, bookToAdd);
-             }
-         }
+        private void ModifyBook()
+        {
 
-         private void DeleteBook()
-         {
+            if (_bookId != null)
+            {
+                this.UpdateBook();
+            }
+            else
+            {
+                this.CreateBook();
+            }
+        }
 
-             DeleteBookDTO bookToDelete = new DeleteBookDTO(Int32.Parse(_bookId), false);
-             DbUtils.ExecuteCommand(DbUtils.DeleteBookProcedureText, bookToDelete);
-         }*/
-
+        private void DeleteBook()
+        {
+            _bookDAO.DeleteBook(_bookId);
+        }
 
     }
 }

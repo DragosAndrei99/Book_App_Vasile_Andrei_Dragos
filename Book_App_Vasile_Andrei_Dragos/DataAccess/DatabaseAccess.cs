@@ -4,26 +4,12 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Reflection;
+using Book_App_Vasile_Andrei_Dragos.Utils;
 
-namespace Book_App_Vasile_Andrei_Dragos.Utils.Database
+namespace Book_App_Vasile_Andrei_Dragos.DataAccess
 {
-    public class DbUtils
+    public class DatabaseAccess
     {
-        public const string QueryAllActiveAuthorsProcedureText = "spAuthorSelectAllActive";
-        public const string QueryAllActiveBooksProcedureText = "spBookSelectAllActive";
-        public const string QueryAllActivePublishersProcedureText = "spPublisherSelectAllActive";
-        public const string QueryAllActiveBookTypesProcedureText = "spBookTypeSelectAllActive";
-
-
-        public const string QueryAuthorByIdProcedureText = "spAuthorsSelectAuthor";
-        public const string QueryBookByIdProcedureText = "spBookSelect";
-
-        public const string AddAuthorProcedureText = "spAuthorInsert";
-
-        public const string UpdateAuthorProcedureText = "spAuthorUpdate";
-
-        public const string DeleteAuthorProcedureText = "spAuthorDelete";
-
         public static SQLTypesMapper mapper = new SQLTypesMapper();
 
         public static Dictionary<string, string> ExecuteQueryCommandById(string commandText, int id, string idFieldName)
@@ -111,7 +97,7 @@ namespace Book_App_Vasile_Andrei_Dragos.Utils.Database
                 {
                     string fieldToUpdate = $"@{prop.Name}";
                     Type fieldType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
-                    command.Parameters.Add(fieldToUpdate, DbUtils.mapper.MapToSqlType(fieldType));
+                    command.Parameters.Add(fieldToUpdate, DatabaseAccess.mapper.MapToSqlType(fieldType));
                     object field = prop.GetValue(entryToUpdate, null);
                     command.Parameters[fieldToUpdate].Value = field?.ToString();
                 }

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace Book_App_Vasile_Andrei_Dragos.Utils.Database
+namespace Book_App_Vasile_Andrei_Dragos.Utils
 {
     public class SQLTypesMapper
     {

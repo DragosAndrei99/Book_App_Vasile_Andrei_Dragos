@@ -56,21 +56,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\Author\DeleteAuthorDTO.cs" />
-    <Compile Include="Models\Author\UpdateAuthorDTO.cs" />
-    <Compile Include="Models\Author\AddAuthorDTO.cs" />
-    <Compile Include="Models\Author\GetAuthorDTO.cs" />
-    <Compile Include="Models\BookType\GetBookTypeDTO.cs" />
-    <Compile Include="Models\Book\AddBookDTO.cs" />
-    <Compile Include="Models\Book\DeleteBookDTO.cs" />
-    <Compile Include="Models\Book\GetBookDTO.cs" />
-    <Compile Include="Models\Book\UpdateBookDTO.cs" />
-    <Compile Include="Models\Publisher\GetPublisherDTO.cs" />
+    <Compile Include="DataAccess\AuthorDAO.cs" />
+    <Compile Include="DataAccess\BookDAO.cs" />
+    <Compile Include="DataAccess\BookTypeDAO.cs" />
+    <Compile Include="DataAccess\PublisherDAO.cs" />
+    <Compile Include="Models\Author\AuthorDeleteDTO.cs" />
+    <Compile Include="Models\Author\AuthorCreateDTO.cs" />
+    <Compile Include="Models\Author\AuthorDTO.cs" />
+    <Compile Include="Models\BookType\BookTypeDTO.cs" />
+    <Compile Include="Models\Book\BookCreateDTO.cs" />
+    <Compile Include="Models\Book\BookDeleteDTO.cs" />
+    <Compile Include="Models\Book\BookDTO.cs" />
+    <Compile Include="Models\Publisher\PublisherDTO.cs" />
     <Compile Include="Utils\BindingProxy.cs" />
     <Compile Include="Utils\ObservableObject.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="Utils\RelayCommandWithoutParams.cs" />
-    <Compile Include="Utils\Database\SQLTypesMapper.cs" />
+    <Compile Include="Utils\SQLTypesMapper.cs" />
     <Compile Include="ViewModels\Author\ListAuthorsViewModel.cs" />
     <Compile Include="ViewModels\Book\BookViewModel.cs" />
     <Compile Include="ViewModels\Book\ListBooksViewModel.cs" />
@@ -78,7 +80,7 @@
     <Compile Include="Views\Author\Author.xaml.cs">
       <DependentUpon>Author.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utils\Database\DbUtils.cs" />
+    <Compile Include="DataAccess\DatabaseAccess.cs" />
     <Compile Include="Views\Book\Book.xaml.cs">
       <DependentUpon>Book.xaml</DependentUpon>
     </Compile>

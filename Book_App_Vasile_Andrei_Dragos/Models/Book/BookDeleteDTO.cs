@@ -1,12 +1,12 @@
 ﻿
 namespace Book_App_Vasile_Andrei_Dragos.Models.Book
 {
-    public class DeleteBookDTO
+    public class BookDeleteDTO
     {
-        public DeleteBookDTO(int bookId, bool active)
+        public BookDeleteDTO(int bookId, bool active)
         {
-            BookId = bookId;
-            Active = active;
+            this.BookId = bookId;
+            this.Active = active;
         }
 
         public int BookId { get; }

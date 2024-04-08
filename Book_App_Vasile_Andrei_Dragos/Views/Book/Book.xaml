@@ -30,11 +30,11 @@
         <TextBox x:Name="bookTitleTextBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding BookTitle, Mode=TwoWay}"/>
 
         <TextBlock Text="Tip carte:" Grid.Row="1" Grid.Column="0" Margin="5"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" Margin="20" Width="200" SelectedIndex="0" ItemsSource="{Binding Path=BookTypeNameList, Mode=TwoWay}">
+        <ComboBox Grid.Row="1" Grid.Column="1" Margin="20" Width="200" SelectedIndex="0" ItemsSource="{Binding Path=BookTypeNameList, Mode=TwoWay}" SelectedItem="{Binding BookTypeName, Mode=TwoWay}">
         </ComboBox>
 
         <TextBlock Text="Publicatie:" Grid.Row="2" Grid.Column="0" Margin="5"/>
-        <ComboBox Grid.Row="2" Grid.Column="1" Margin="20" Width="200" SelectedIndex="0" ItemsSource="{Binding Path=PublisherNameList, Mode=TwoWay}">
+        <ComboBox Grid.Row="2" Grid.Column="1" Margin="20" Width="200" SelectedIndex="0" ItemsSource="{Binding Path=PublisherNameList, Mode=TwoWay}" SelectedItem="{Binding PublisherName, Mode=TwoWay}">
         </ComboBox>
 
         <TextBlock Text="Anul publicatiei:" Grid.Row="3" Grid.Column="0" Margin="5"/>
@@ -43,7 +43,7 @@
         <TextBlock Text="Stoc:" Grid.Row="4" Grid.Column="0" Margin="5"/>
         <TextBox x:Name="stockTextBox" Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding Stock, Mode=TwoWay}"/>
 
-        <Button Content="Adauga" Command="{Binding UpdateBookDetailsCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
+        <Button Content="Adauga" Command="{Binding ModifyBookCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
         <Button Content="Sterge" Command="{Binding DeleteBookCommand}" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
        
         

@@ -1,17 +1,17 @@
 ﻿using Book_App_Vasile_Andrei_Dragos.Models.Author;
 using Book_App_Vasile_Andrei_Dragos.Utils;
-using Book_App_Vasile_Andrei_Dragos.Utils.Database;
+using Book_App_Vasile_Andrei_Dragos.DataAccess;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 
 
 namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Author
 {
     public class ListAuthorsViewModel: ObservableObject
     {
-        private ObservableCollection<GetAuthorDTO> _authorList = null;
+        private AuthorDAO _authorDAO;
+        private ObservableCollection<AuthorDTO> _authorList = null;
 
-        public ObservableCollection<GetAuthorDTO> AuthorList
+        public ObservableCollection<AuthorDTO> AuthorList
         {
             get { return _authorList; }
             set
@@ -22,18 +22,15 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Author
             }
         }
         public ListAuthorsViewModel() {
-            this.AuthorList = new ObservableCollection<GetAuthorDTO>();
+            _authorDAO = new AuthorDAO();
+            this.AuthorList = new ObservableCollection<AuthorDTO>();
             this.LoadAuthors();
         }
         
 
         private void LoadAuthors()
         {
-            List<Dictionary<string, string>> listOfAuthors = DbUtils.ExecuteQueryAllCommand(DbUtils.QueryAllActiveAuthorsProcedureText);
-            foreach(Dictionary<string, string> entry in listOfAuthors)
-            {
-                this.AuthorList.Add(new GetAuthorDTO(entry));
-            }
+            this.AuthorList = _authorDAO.GetAllAuthors();
         }
 
     }

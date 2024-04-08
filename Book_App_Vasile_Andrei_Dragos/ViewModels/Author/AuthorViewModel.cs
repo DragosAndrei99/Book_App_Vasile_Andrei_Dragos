@@ -1,26 +1,28 @@
 ﻿using Book_App_Vasile_Andrei_Dragos.Models.Author;
-using Book_App_Vasile_Andrei_Dragos.Utils.Database;
 using Book_App_Vasile_Andrei_Dragos.Utils;
 
 using System;
 using System.Collections.Generic;
+using Book_App_Vasile_Andrei_Dragos.DataAccess;
 
 namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Author
 {
     public class AuthorViewModel: ObservableObject
     {
-        private string _authorToUpdateId;
-        private string _authorToUpdateFirstName;
-        private string _authorToUpdateLastName;
-        private Nullable<DateTime> _authorToUpdateBirthDate;
+        private AuthorDAO _authorDAO;
+        private string _authorId;
+        private string _authorFirstName;
+        private string _authorLastName;
+        private Nullable<DateTime> _authorBirthDate;
 
         public RelayCommandWithoutParams UpdateAuthorDetailsCommand { get; private set; }
 
         public RelayCommandWithoutParams DeleteAuthorCommand { get; private set; }
         public AuthorViewModel(string authorId) 
         {
-            _authorToUpdateId = authorId;
-            if(_authorToUpdateId != null)
+            _authorDAO = new AuthorDAO();
+            _authorId = authorId;
+            if(_authorId != null)
             {
                 this.GetAuthorDetails();
 
@@ -32,10 +34,10 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Author
         public string AuthorFirstName
         {
             get
-            { return _authorToUpdateFirstName; }
+            { return _authorFirstName; }
             set
             {
-                _authorToUpdateFirstName = value;
+                _authorFirstName = value;
                 OnPropertyChanged("AuthorFirstName");
             }
         }
@@ -43,10 +45,10 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Author
         public string AuthorLastName
         {
             get
-            { return _authorToUpdateLastName; }
+            { return _authorLastName; }
             set
             {
-                _authorToUpdateLastName = value;
+                _authorLastName = value;
                 OnPropertyChanged("AuthorLastName");
             }
         }
@@ -54,42 +56,49 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Author
         public Nullable<DateTime> AuthorBirthDate
         {
             get
-            { return _authorToUpdateBirthDate; }
+            { return _authorBirthDate; }
             set
             {
-                _authorToUpdateBirthDate = value;
+                _authorBirthDate = value;
                 OnPropertyChanged("AuthorBirthDate");
             }
         }
 
         private void GetAuthorDetails()
         {
-            Dictionary<string, string> authorEntry = DbUtils.ExecuteQueryCommandById(DbUtils.QueryAuthorByIdProcedureText, Int32.Parse(_authorToUpdateId), "AuthorId");
-            GetAuthorDTO author = new GetAuthorDTO(authorEntry);
+            AuthorDTO author = _authorDAO.GetAuthorById(_authorId);
             AuthorFirstName = author.FirstName;
             AuthorLastName = author.LastName;
             AuthorBirthDate = author.BirthDate;
         }
 
+
+        private void CreateAuthor()
+        {
+            AuthorCreateDTO authorToAdd = new AuthorCreateDTO(_authorFirstName, _authorLastName, _authorBirthDate);
+            _authorDAO.CreateAuthor(authorToAdd);
+        }
+
+        private void UpdateAuthor()
+        {
+            AuthorDTO authorToAdd = new AuthorDTO(Int32.Parse(_authorId), _authorFirstName, _authorLastName, _authorBirthDate);
+            _authorDAO.UpdateAuthor(authorToAdd);
+        }
         private void UpdateAuthorDetails()
         {
 
-            if(_authorToUpdateId != null)
+            if(_authorId != null)
             {
-                UpdateAuthorDTO authorToUpdate = new UpdateAuthorDTO(Int32.Parse(_authorToUpdateId), _authorToUpdateFirstName, _authorToUpdateLastName, _authorToUpdateBirthDate);
-                DbUtils.ExecuteCommand(DbUtils.UpdateAuthorProcedureText, authorToUpdate);
+                this.UpdateAuthor();
             } else
             {
-                AddAuthorDTO authorToAdd = new AddAuthorDTO(_authorToUpdateFirstName, _authorToUpdateLastName, _authorToUpdateBirthDate);
-                DbUtils.ExecuteCommand(DbUtils.AddAuthorProcedureText, authorToAdd);
+                this.CreateAuthor();
             }
         }
 
         private void DeleteAuthor()
         {
-
-            DeleteAuthorDTO authorToDelete = new DeleteAuthorDTO(Int32.Parse(_authorToUpdateId), false);
-            DbUtils.ExecuteCommand(DbUtils.DeleteAuthorProcedureText, authorToDelete);
+           _authorDAO.DeleteAuthor(_authorId);
         }
     }
 }
