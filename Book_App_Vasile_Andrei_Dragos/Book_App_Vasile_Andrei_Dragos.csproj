@@ -79,6 +79,7 @@
     <Compile Include="Models\Publisher\PublisherDTO.cs" />
     <Compile Include="Models\UserBook\UserBookCreateDTO.cs" />
     <Compile Include="Models\UserBook\UserBookDTO.cs" />
+    <Compile Include="Models\UserBook\UserBookUpdateDTO.cs" />
     <Compile Include="Models\User\UserDTO.cs" />
     <Compile Include="Utils\ObservableObject.cs" />
     <Compile Include="Utils\RelayCommand.cs" />

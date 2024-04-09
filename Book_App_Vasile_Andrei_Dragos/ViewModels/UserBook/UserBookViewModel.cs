@@ -19,6 +19,8 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.UserBook
         private string _userFullName;
         private DateTime _startDate;
         private Nullable<DateTime> _returnDate;
+        private int _userId;
+        private int _bookId;
 
         private ObservableCollection<string> _bookTitleList = new ObservableCollection<string>();
         private ObservableCollection<string> _userFullNameList = new ObservableCollection<string>();
@@ -33,8 +35,10 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.UserBook
             {
                 _userBookId = Int32.Parse(userBookId);
                 this.GetUserBookDetails();
+            }else
+            {
+                this.LoadAllBooks();
             }
-            this.LoadAllBooks();
             this.LoadAllUsers();
             ModifyUserBookCommand = new RelayCommandWithoutParams(ModifyUserBook);
         }
@@ -108,6 +112,8 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.UserBook
             this.UserFullName = $"{userBook.FirstName} {userBook.LastName}";
             this.StartDate = userBook.StartDate;
             this.ReturnDate = userBook.ReturnDate;
+            _userId = userBook.UserId;
+            _bookId = userBook.BookId;
         }
 
         private void LoadAllBooks()
@@ -153,11 +159,15 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.UserBook
         private void UpdateUserBook() 
         {
             string[] names = _userFullName.Split(' ');
-            UserBookDTO userBookToUpdate = new UserBookDTO(_userBookId, names[0], names[1], _bookTitle, _startDate, _returnDate);
+            
+            UserBookUpdateDTO userBookToUpdate = new UserBookUpdateDTO(_userBookId, _bookId, names[0], names[1], _startDate, _returnDate);
             int bookId = _userBookDAO.UpdateUserBook(userBookToUpdate);
             if(_returnDate != null && _returnDate <= DateTime.Now)
             {
                 _bookDAO.IncreaseBookStock(bookId);
+            } else
+            {
+                _bookDAO.DecreaseBookStock(bookId);
             }
         }
     }

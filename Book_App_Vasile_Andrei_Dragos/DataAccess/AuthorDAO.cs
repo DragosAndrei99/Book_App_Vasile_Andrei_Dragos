@@ -26,14 +26,17 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
                 int authorId = Int32.Parse(entry["AuthorId"]);
                 string firstName = entry["FirstName"];
                 string lastName = entry["LastName"];
-                if (entry.TryGetValue("BirthDate", out string birthDateEntry))
+                entry.TryGetValue("BirthDate", out string birthDateEntry);
+                if (birthDateEntry != "")
                 {
                     DateTime.TryParse(birthDateEntry, out DateTime birthDate);
                     authorList.Add(new AuthorDTO(authorId, firstName, lastName, birthDate));
-                } else
+                }
+                else
                 {
                     authorList.Add(new AuthorDTO(authorId, firstName, lastName, null));
                 }
+
 
             }
 
@@ -46,7 +49,8 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
             string firstName = authorEntry["FirstName"];
             string lastName = authorEntry["LastName"];
             AuthorDTO author;
-            if (authorEntry.TryGetValue("BirthDate", out string birthDateEntry))
+            authorEntry.TryGetValue("BirthDate", out string birthDateEntry);
+            if (birthDateEntry != "")
             {
                 DateTime.TryParse(birthDateEntry, out DateTime birthDate);
                 author = new AuthorDTO(authorId, firstName, lastName, birthDate);
@@ -55,6 +59,7 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
             {
                 author = new AuthorDTO(authorId, firstName, lastName, null);
             }
+
 
             return author;
         }

@@ -16,6 +16,14 @@ namespace Book_App_Vasile_Andrei_Dragos.Views.UserBook
             {
                 Button modifyButton = (Button)FindName("modifyButton");
                 modifyButton.Content = "Modifica";
+                staticBookTitleTextBlock.Visibility = System.Windows.Visibility.Visible;
+                dynamicBookTitleComboBox.Visibility = System.Windows.Visibility.Collapsed;
+
+            }
+            else
+            {
+                staticBookTitleTextBlock.Visibility = System.Windows.Visibility.Collapsed;
+                dynamicBookTitleComboBox.Visibility = System.Windows.Visibility.Visible;
             }
         }
 

@@ -25,7 +25,8 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Carte:" Grid.Row="0" Grid.Column="0" Margin="5"/>
-        <ComboBox Grid.Row="0" Grid.Column="1" Margin="20" Width="200" SelectedIndex="0" ItemsSource="{Binding Path=BookTitleList, Mode=TwoWay}" SelectedItem="{Binding Title, Mode=TwoWay}">
+        <TextBlock Visibility="Collapsed" x:Name="staticBookTitleTextBlock" Text="{Binding Title}" FontWeight="Bold" FontSize="14" Grid.Row="1" Grid.Column="0" Margin="5"/>
+        <ComboBox Visibility="Collapsed" x:Name="dynamicBookTitleComboBox" Grid.Row="0" Grid.Column="1" Margin="20" Width="200" SelectedIndex="0" ItemsSource="{Binding Path=BookTitleList, Mode=TwoWay}" SelectedItem="{Binding Title, Mode=TwoWay}">
         </ComboBox>
 
         <TextBlock Text="Utilizator:" Grid.Row="2" Grid.Column="0" Margin="5"/>

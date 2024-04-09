@@ -21,18 +21,21 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
             foreach (Dictionary<string, string> entry in listOfUserBooks)
             {
                 int id = Int32.Parse(entry["Id"]);
+                int bookId = Int32.Parse(entry["BookId"]);
+                int userId = Int32.Parse(entry["UserId"]);
                 string firstName = entry["UserFirstName"];
                 string lastName = entry["UserLastName"];
                 string bookTitle = entry["BookTitle"];
                 DateTime startDate = DateTime.Parse(entry["StartDate"]);
-                if (entry.TryGetValue("ReturnDate", out string returnDateEntry))
+                entry.TryGetValue("ReturnDate", out string returnDateEntry);
+                if(returnDateEntry != "")
                 {
                     DateTime.TryParse(returnDateEntry, out DateTime returnDate);
-                    userBookList.Add(new UserBookDTO(id, firstName,lastName, bookTitle, startDate, returnDate));
+                    userBookList.Add(new UserBookDTO(id, bookId, userId, firstName, lastName, bookTitle, startDate, returnDate));
                 }
                 else
                 {
-                    userBookList.Add(new UserBookDTO(id, firstName,lastName, bookTitle, startDate, null));
+                    userBookList.Add(new UserBookDTO(id, bookId, userId, firstName, lastName, bookTitle, startDate, null));
                 }
             }
 
@@ -43,18 +46,21 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
         {
             Dictionary<string, string> userBookEntry = DatabaseAccess.ExecuteCommandById(QueryUserBookByIdProcedureText, userBookId, "Id").FirstOrDefault();
             int id = Int32.Parse(userBookEntry["Id"]);
+            int bookId = Int32.Parse(userBookEntry["BookId"]);
+            int userId = Int32.Parse(userBookEntry["UserId"]);
             string firstName = userBookEntry["UserFirstName"];
             string lastName = userBookEntry["UserLastName"];
             string bookTitle = userBookEntry["BookTitle"];
             DateTime startDate = DateTime.Parse(userBookEntry["StartDate"]);
-            if (userBookEntry.TryGetValue("ReturnDate", out string returnDateEntry))
+            userBookEntry.TryGetValue("ReturnDate", out string returnDateEntry);
+            if(returnDateEntry != "")
             {
                 DateTime.TryParse(returnDateEntry, out DateTime returnDate);
-                return new UserBookDTO(id, firstName, lastName, bookTitle, startDate, returnDate);
+                return new UserBookDTO(id, bookId, userId, firstName, lastName, bookTitle, startDate, returnDate);
             }
             else
             {
-                return new UserBookDTO(id, firstName, lastName, bookTitle, startDate, null);
+                return new UserBookDTO(id, bookId, userId, firstName, lastName, bookTitle, startDate, null);
             }
         }
 
@@ -63,7 +69,7 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
             return DatabaseAccess.ExecuteCommand(AddUserBookProcedureText, userBook);
         }
 
-        public int UpdateUserBook(UserBookDTO userBookToUpdate)
+        public int UpdateUserBook(UserBookUpdateDTO userBookToUpdate)
         {
             return DatabaseAccess.ExecuteCommand(UpdateUserBookProcedureText, userBookToUpdate);
 
