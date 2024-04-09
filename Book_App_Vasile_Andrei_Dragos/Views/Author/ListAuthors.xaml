@@ -7,7 +7,25 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ListAuthors">
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=AuthorList, Mode=OneWay}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="10 10 0 0" FontSize="16" FontWeight="Bold"> Cautare:</TextBlock>
+        <Label Grid.Row="1" FontSize="15" Margin="10 10 0 0" Padding="0">Nume:</Label>
+        <TextBox Grid.Row="2" Grid.Column="0" Width="200" HorizontalAlignment="Left" Margin="10 0 0 10" x:Name="searchLastNameTextBox" KeyUp="HandleKeyUpSearch" />
+
+        <DataGrid x:Name="listAuthorsDataGrid" Grid.Row="3" Margin="10" FontSize="14" AutoGenerateColumns="False" ItemsSource="{Binding Path=AuthorList, Mode=OneWay}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Prenume">
                     <DataGridTemplateColumn.CellTemplate>
@@ -33,10 +51,11 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                        <Button Tag="{Binding AuthorId}"  Click="NavigateToUpdateAuthor">Modifica</Button>
+                            <Button Tag="{Binding AuthorId}"  Click="NavigateToUpdateAuthor">Modifica</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+    </Grid>
 </Page>
