@@ -1,9 +1,8 @@
-﻿using Book_App_Vasile_Andrei_Dragos.Models.Author;
+﻿using System;
+using Book_App_Vasile_Andrei_Dragos.DataAccess;
+using Book_App_Vasile_Andrei_Dragos.Models.Author;
 using Book_App_Vasile_Andrei_Dragos.Utils;
 
-using System;
-using System.Collections.Generic;
-using Book_App_Vasile_Andrei_Dragos.DataAccess;
 
 namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Author
 {

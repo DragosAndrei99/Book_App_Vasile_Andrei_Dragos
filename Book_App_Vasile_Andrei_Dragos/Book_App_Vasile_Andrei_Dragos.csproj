@@ -71,6 +71,7 @@
     <Compile Include="Models\Author\AuthorCreateDTO.cs" />
     <Compile Include="Models\Author\AuthorDTO.cs" />
     <Compile Include="Models\BookType\BookTypeDTO.cs" />
+    <Compile Include="Models\Book\BookWithAuthors.cs" />
     <Compile Include="Models\Book\BookCreateDTO.cs" />
     <Compile Include="Models\Book\BookDeleteDTO.cs" />
     <Compile Include="Models\Book\BookDTO.cs" />

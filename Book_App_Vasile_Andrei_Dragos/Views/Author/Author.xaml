@@ -29,10 +29,10 @@
         <TextBlock Text="Nume:" Grid.Row="1" Grid.Column="0" Margin="5"/>
         <TextBox x:Name="lastNameTextBox" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding AuthorLastName, Mode=TwoWay}"/>
 
-        <TextBlock Text="Data nasterii:" Grid.Row="2" Grid.Column="0" Margin="5"/>
+        <TextBlock Text="Data nasterii (mm/dd/yyyy) :" Grid.Row="2" Grid.Column="0" Margin="5"/>
         <TextBox x:Name="birthDateTextBox" Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding AuthorBirthDate, Mode=TwoWay}"/>
 
-        <Button Content="Adauga" Command="{Binding UpdateAuthorDetailsCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
+        <Button x:Name="modifyButton" Content="Adauga" Command="{Binding UpdateAuthorDetailsCommand}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
         <Button Content="Sterge" Command="{Binding DeleteAuthorCommand}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
 
     </Grid>

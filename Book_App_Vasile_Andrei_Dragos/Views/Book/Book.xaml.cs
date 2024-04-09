@@ -10,6 +10,11 @@ namespace Book_App_Vasile_Andrei_Dragos.Views.Book
         {
             InitializeComponent();
             this.DataContext = new BookViewModel(bookId);
+            if(bookId != null )
+            {
+                Button modifyButton = (Button)FindName("modifyButton");
+                modifyButton.Content = "Modifica";
+            }
         }
 
         private void HandleClick(object sender, System.Windows.RoutedEventArgs e)

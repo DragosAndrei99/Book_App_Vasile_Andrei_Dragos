@@ -1,6 +1,6 @@
-﻿using Book_App_Vasile_Andrei_Dragos.ViewModels.UserBook;
-using System;
+﻿using System;
 using System.Windows.Controls;
+using Book_App_Vasile_Andrei_Dragos.ViewModels.UserBook;
 
 
 namespace Book_App_Vasile_Andrei_Dragos.Views.UserBook
@@ -12,6 +12,11 @@ namespace Book_App_Vasile_Andrei_Dragos.Views.UserBook
         {
             InitializeComponent();
             this.DataContext = new UserBookViewModel(userBookId);
+            if (userBookId != null)
+            {
+                Button modifyButton = (Button)FindName("modifyButton");
+                modifyButton.Content = "Modifica";
+            }
         }
 
         private void HandleClick(object sender, System.Windows.RoutedEventArgs e)

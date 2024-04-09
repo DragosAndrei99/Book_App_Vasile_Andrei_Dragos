@@ -10,42 +10,49 @@
 
     <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=BookList, Mode=OneWay}">
         <DataGrid.Columns>
-            <DataGridTemplateColumn Width="120">
+            <DataGridTemplateColumn Header="Titlul Cartii">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="200">
+            <DataGridTemplateColumn Header="Autor/i">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Authors}" HorizontalAlignment="Stretch"></TextBlock>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Header="Tip carte">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding BookTypeName}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="200">
+            <DataGridTemplateColumn Header="Publicatie">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding PublisherName}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="120">
+            <DataGridTemplateColumn Header="Anul publicatiei">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding PublishYear}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="200">
+            <DataGridTemplateColumn Header="Stoc">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Stock}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="120">
+            <DataGridTemplateColumn>
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <Button Tag="{Binding BookId}"  Click="NavigateToUpdateBook" >Modifica</Button>

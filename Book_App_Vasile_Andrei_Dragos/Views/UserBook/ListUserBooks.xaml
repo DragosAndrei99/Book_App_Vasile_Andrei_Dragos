@@ -10,42 +10,42 @@
 
     <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=UserBookList, Mode=OneWay}">
         <DataGrid.Columns>
-            <DataGridTemplateColumn Width="120">
+            <DataGridTemplateColumn Header="Titlu">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="200">
+            <DataGridTemplateColumn Header="Prenume Utilizator">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding FirstName}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="200">
+            <DataGridTemplateColumn Header="Nume utilizator">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding LastName}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="200">
+            <DataGridTemplateColumn Header="Data inceput (mm/dd/yyyy)">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding StartDate}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="120">
+            <DataGridTemplateColumn Header="Data sfarsit (mm/dd/yyyy)">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding ReturnDate}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="120">
+            <DataGridTemplateColumn>
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
                         <Button Tag="{Binding Id}"  Click="NavigateToUpdateUserBook" >Modifica</Button>

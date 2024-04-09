@@ -32,13 +32,13 @@
         <ComboBox Grid.Row="2" Grid.Column="1" Margin="20" Width="200" SelectedIndex="0" ItemsSource="{Binding Path=UserFullNameList, Mode=TwoWay}" SelectedItem="{Binding UserFullName, Mode=TwoWay}">
         </ComboBox>
 
-        <TextBlock Text="Data inceput:" Grid.Row="3" Grid.Column="0" Margin="5"/>
+        <TextBlock Text="Data inceput (mm/dd/yyyy) :" Grid.Row="3" Grid.Column="0" Margin="5"/>
         <TextBox x:Name="startDateTextBox" Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding StartDate, Mode=TwoWay}"/>
 
-        <TextBlock Text="Data sfarsit:" Grid.Row="4" Grid.Column="0" Margin="5"/>
+        <TextBlock Text="Data sfarsit (mm/dd/yyyy) :" Grid.Row="4" Grid.Column="0" Margin="5"/>
         <TextBox x:Name="returnDateTextBox" Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding ReturnDate, Mode=TwoWay}"/>
 
-        <Button Content="Adauga" Command="{Binding ModifyUserBookCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
+        <Button x:Name="modifyButton" Content="Adauga" Command="{Binding ModifyUserBookCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
 
     </Grid>
 </Page>

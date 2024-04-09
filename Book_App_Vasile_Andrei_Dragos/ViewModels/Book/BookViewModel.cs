@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Book_App_Vasile_Andrei_Dragos.Models.Book;
@@ -9,7 +10,6 @@ using Book_App_Vasile_Andrei_Dragos.Utils;
 using Book_App_Vasile_Andrei_Dragos.DataAccess;
 using Book_App_Vasile_Andrei_Dragos.Models.AuthorBook;
 using Book_App_Vasile_Andrei_Dragos.Models.Author;
-using System.Linq;
 
 namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Book
 {

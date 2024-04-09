@@ -9,31 +9,31 @@
       Title="ListAuthors">
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Path=AuthorList, Mode=OneWay}">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Width="120">
+                <DataGridTemplateColumn Header="Prenume">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding FirstName}" HorizontalAlignment="Stretch"></TextBlock>
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn.CellTemplate >
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="120">
+                <DataGridTemplateColumn Header="Nume">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding LastName}" HorizontalAlignment="Stretch"></TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="200">
-                    <DataGridTemplateColumn.CellTemplate>
+                <DataGridTemplateColumn Header="Data nasterii (mm/dd/yyyy)">
+                    <DataGridTemplateColumn.CellTemplate >
                         <DataTemplate>
                             <TextBlock Text="{Binding BirthDate}" HorizontalAlignment="Stretch"></TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="120">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Tag="{Binding AuthorId}"  Click="NavigateToUpdateAuthor" >Modifica</Button>
+                        <Button Tag="{Binding AuthorId}"  Click="NavigateToUpdateAuthor">Modifica</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
