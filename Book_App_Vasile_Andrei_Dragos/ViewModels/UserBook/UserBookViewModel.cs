@@ -112,7 +112,7 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.UserBook
 
         private void LoadAllBooks()
         {
-            ObservableCollection<BookDTO> allBooks = _bookDAO.GetAllBooks();
+            ObservableCollection<BookDTO> allBooks = _bookDAO.GetAllActiveInStockBooks();
             foreach (BookDTO book in allBooks)
             {
                 this.BookTitleList.Add(book.Title);
@@ -148,7 +148,6 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.UserBook
             {
                 _bookDAO.DecreaseBookStock(bookId);
             }
-           
         }
 
         private void UpdateUserBook() 

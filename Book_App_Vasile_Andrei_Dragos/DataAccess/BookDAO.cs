@@ -10,6 +10,7 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
     public class BookDAO
     {
         private const string QueryAllActiveBooksProcedureText = "spBookSelectAllActive";
+        private const string QueryAllActiveAndInStockBooksProcedureText = "spBookSelectAllActiveAndInStock";        
         private const string QueryBookByIdProcedureText = "spBookSelect";
         private const string AddBookProcedureText = "spBookInsert";
         private const string UpdateBookProcedureText = "spBookUpdate";
@@ -19,10 +20,20 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
 
         public BookDAO() { }
 
-        public ObservableCollection<BookDTO> GetAllBooks()
+        public ObservableCollection<BookDTO> GetAllActiveInStockBooks()
+        {
+            return this.GetAllBooks(QueryAllActiveAndInStockBooksProcedureText);
+        }
+
+        public ObservableCollection<BookDTO> GetAllActiveBooks()
+        {
+            return this.GetAllBooks(QueryAllActiveBooksProcedureText);
+        }
+
+        public ObservableCollection<BookDTO> GetAllBooks(string procedureText)
         {
             ObservableCollection<BookDTO> bookList = new ObservableCollection<BookDTO>();
-            List<Dictionary<string, string>> listOfBooks = DatabaseAccess.ExecuteQueryAllCommand(QueryAllActiveBooksProcedureText);
+            List<Dictionary<string, string>> listOfBooks = DatabaseAccess.ExecuteQueryAllCommand(procedureText);
             foreach (Dictionary<string, string> entry in listOfBooks)
             {
                 int bookId = Int32.Parse(entry["BookId"]);

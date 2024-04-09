@@ -31,7 +31,7 @@ namespace Book_App_Vasile_Andrei_Dragos.ViewModels.Book
 
         private void LoadBooks()
         {
-            this.BookList = _bookDAO.GetAllBooks();
+            this.BookList = _bookDAO.GetAllActiveBooks();
         }
 
     }
