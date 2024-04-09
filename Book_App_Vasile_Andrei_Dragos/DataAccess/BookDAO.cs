@@ -14,6 +14,8 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
         private const string AddBookProcedureText = "spBookInsert";
         private const string UpdateBookProcedureText = "spBookUpdate";
         private const string DeleteBookProcedureText = "spBookDelete";
+        private const string IncreaseStockProcedureText = "spBookIncreaseStock";
+        private const string DecreaseStockProcedureText = "spBookDecreaseStock";
 
         public BookDAO() { }
 
@@ -59,6 +61,17 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
             DatabaseAccess.ExecuteCommand(UpdateBookProcedureText, bookToUpdate);
 
         }
+
+        public void IncreaseBookStock(int bookId)
+        {
+            DatabaseAccess.ExecuteCommandById(IncreaseStockProcedureText, bookId, "BookId");
+        }
+
+        public void DecreaseBookStock(int bookId)
+        {
+            DatabaseAccess.ExecuteCommandById(DecreaseStockProcedureText, bookId, "BookId");
+        }
+
 
         public void DeleteBook(int bookId) 
         {

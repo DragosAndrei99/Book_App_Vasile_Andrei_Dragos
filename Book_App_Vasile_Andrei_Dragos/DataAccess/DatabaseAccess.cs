@@ -38,8 +38,6 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
                         }
                         
                     }
-                    Int32 rowsAffected = command.ExecuteNonQuery();
-                    Console.WriteLine("RowsAffected: {0}", rowsAffected);
                 }
                 catch (Exception ex)
                 {
@@ -73,8 +71,6 @@ namespace Book_App_Vasile_Andrei_Dragos.DataAccess
                             listOfFields.Add(fields);
                         }
                     }
-                    Int32 rowsAffected = command.ExecuteNonQuery();
-                    Console.WriteLine("RowsAffected: {0}", rowsAffected);
                 }
                 catch (Exception ex)
                 {

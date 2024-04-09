@@ -11,7 +11,7 @@ namespace Book_App_Vasile_Andrei_Dragos.Views.UserBook
         public UserBook(string userBookId)
         {
             InitializeComponent();
-            /*this.DataContext = new UserBookViewModel(userBookId);*/
+            this.DataContext = new UserBookViewModel(userBookId);
         }
 
         private void HandleClick(object sender, System.Windows.RoutedEventArgs e)

@@ -62,6 +62,7 @@
     <Compile Include="DataAccess\BookTypeDAO.cs" />
     <Compile Include="DataAccess\PublisherDAO.cs" />
     <Compile Include="DataAccess\UserBookDAO.cs" />
+    <Compile Include="DataAccess\UserDAO.cs" />
     <Compile Include="Models\AuthorBook\AuthorBookCreateDTO.cs" />
     <Compile Include="Models\AuthorBook\AuthorBookDTO.cs" />
     <Compile Include="Models\AuthorBook\AuthorBookUpdateDTO.cs" />
@@ -73,7 +74,9 @@
     <Compile Include="Models\Book\BookCreateDTO.cs" />
     <Compile Include="Models\Book\BookDeleteDTO.cs" />
     <Compile Include="Models\Book\BookDTO.cs" />
+    <Compile Include="Models\Book\BookStockDTO.cs" />
     <Compile Include="Models\Publisher\PublisherDTO.cs" />
+    <Compile Include="Models\UserBook\UserBookCreateDTO.cs" />
     <Compile Include="Models\UserBook\UserBookDTO.cs" />
     <Compile Include="Models\User\UserDTO.cs" />
     <Compile Include="Utils\ObservableObject.cs" />

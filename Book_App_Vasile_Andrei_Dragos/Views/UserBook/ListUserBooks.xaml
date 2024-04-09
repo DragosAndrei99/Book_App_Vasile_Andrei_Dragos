@@ -13,14 +13,21 @@
             <DataGridTemplateColumn Width="120">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding BookTitle}" HorizontalAlignment="Stretch"></TextBlock>
+                        <TextBlock Text="{Binding Title}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>
             <DataGridTemplateColumn Width="200">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding UserFullName}" HorizontalAlignment="Stretch"></TextBlock>
+                        <TextBlock Text="{Binding FirstName}" HorizontalAlignment="Stretch"></TextBlock>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTemplateColumn Width="200">
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding LastName}" HorizontalAlignment="Stretch"></TextBlock>
                     </DataTemplate>
                 </DataGridTemplateColumn.CellTemplate>
             </DataGridTemplateColumn>

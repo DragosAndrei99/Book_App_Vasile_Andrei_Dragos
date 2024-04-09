@@ -9,6 +9,36 @@
       Title="UserBook">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Carte:" Grid.Row="0" Grid.Column="0" Margin="5"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="20" Width="200" SelectedIndex="0" ItemsSource="{Binding Path=BookTitleList, Mode=TwoWay}" SelectedItem="{Binding Title, Mode=TwoWay}">
+        </ComboBox>
+
+        <TextBlock Text="Utilizator:" Grid.Row="2" Grid.Column="0" Margin="5"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" Margin="20" Width="200" SelectedIndex="0" ItemsSource="{Binding Path=UserFullNameList, Mode=TwoWay}" SelectedItem="{Binding UserFullName, Mode=TwoWay}">
+        </ComboBox>
+
+        <TextBlock Text="Data inceput:" Grid.Row="3" Grid.Column="0" Margin="5"/>
+        <TextBox x:Name="startDateTextBox" Grid.Row="3" Grid.Column="1" Margin="5" Text="{Binding StartDate, Mode=TwoWay}"/>
+
+        <TextBlock Text="Data sfarsit:" Grid.Row="4" Grid.Column="0" Margin="5"/>
+        <TextBox x:Name="returnDateTextBox" Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding ReturnDate, Mode=TwoWay}"/>
+
+        <Button Content="Adauga" Command="{Binding ModifyUserBookCommand}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5" Click="HandleClick"/>
+
     </Grid>
 </Page>
